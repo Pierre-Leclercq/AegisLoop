@@ -1,0 +1,10 @@
+{
+  "ConnectionStrings": {
+    "AegisLoopDb": "Data Source=aegisloop_local.db"
+  },
+  "Logging": {
+    "LogLevel": {
+      "Default": "Trace"
+    }
+  }
+}

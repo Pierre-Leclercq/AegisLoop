@@ -1,0 +1,42 @@
+{
+  "version": 8,
+  "name": "Satellite Imagery",
+  "sources": {
+    "esri-satellite": {
+      "type": "raster",
+      "tiles": ["https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"],
+      "tileSize": 256,
+      "attribution": "Imagery &copy; <a href=\"https://www.esri.com/en-us/legal/terms/data-attributions\">ESRI, Maxar, Earthstar Geographics</a>",
+      "maxzoom": 19
+    },
+    "sat-terrain-free": {
+      "type": "raster-dem",
+      "tiles": ["https://s3.amazonaws.com/elevation-tiles-prod/terrarium/{z}/{x}/{y}.png"],
+      "tileSize": 256,
+      "attribution": "Terrain: <a href=\"https://github.com/tilezen/joerd/blob/master/docs/terrarium.md\">AWS Terrain Tiles</a>",
+      "maxzoom": 15
+    }
+  },
+  "sprite": "https://demotiles.maplibre.org/styles/osm-bright/sprite",
+  "glyphs": "https://demotiles.maplibre.org/font/{fontstack}/{range}.pbf",
+  "layers": [
+    {
+      "id": "satellite-layer",
+      "type": "raster",
+      "source": "esri-satellite",
+      "minzoom": 0,
+      "maxzoom": 22
+    }
+  ],
+  "terrain": {
+    "source": "sat-terrain-free",
+    "exaggeration": 1.5
+  },
+  "sky": {
+    "sky-color": "#0a1a2e",
+    "horizon-color": "#1a3045",
+    "fog-color": "#0d1f33",
+    "fog-ground-blend": 0.08,
+    "horizon-fog-blend": 0.03
+  }
+}

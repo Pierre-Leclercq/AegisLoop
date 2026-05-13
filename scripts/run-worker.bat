@@ -1,0 +1,3 @@
+@echo off
+echo Lancement de AegisLoop.Worker...
+dotnet run --project src\AegisLoop.Worker\AegisLoop.Worker.csproj

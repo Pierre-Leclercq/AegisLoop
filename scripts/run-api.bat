@@ -1,0 +1,3 @@
+@echo off
+echo Lancement de AegisLoop.Api...
+dotnet run --project src\AegisLoop.Api\AegisLoop.Api.csproj

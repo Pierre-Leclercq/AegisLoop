@@ -1,0 +1,42 @@
+{
+  "version": 8,
+  "name": "Topographic Terrain",
+  "sources": {
+    "opentopomap": {
+      "type": "raster",
+      "tiles": ["https://tile.opentopomap.org/{z}/{x}/{y}.png"],
+      "tileSize": 256,
+      "attribution": "&copy; <a href=\"https://opentopomap.org\">OpenTopoMap</a> (<a href=\"https://creativecommons.org/licenses/by-sa/3.0/\">CC BY-SA</a>) | &copy; <a href=\"https://www.openstreetmap.org/copyright\">OpenStreetMap</a> contributors",
+      "maxzoom": 17
+    },
+    "topo-terrain-free": {
+      "type": "raster-dem",
+      "tiles": ["https://s3.amazonaws.com/elevation-tiles-prod/terrarium/{z}/{x}/{y}.png"],
+      "tileSize": 256,
+      "attribution": "Terrain: <a href=\"https://github.com/tilezen/joerd/blob/master/docs/terrarium.md\">AWS Terrain Tiles</a>",
+      "maxzoom": 15
+    }
+  },
+  "sprite": "https://demotiles.maplibre.org/styles/osm-bright/sprite",
+  "glyphs": "https://demotiles.maplibre.org/font/{fontstack}/{range}.pbf",
+  "layers": [
+    {
+      "id": "topo-layer",
+      "type": "raster",
+      "source": "opentopomap",
+      "minzoom": 0,
+      "maxzoom": 22
+    }
+  ],
+  "terrain": {
+    "source": "topo-terrain-free",
+    "exaggeration": 1.8
+  },
+  "sky": {
+    "sky-color": "#bde3fc",
+    "horizon-color": "#d8eefc",
+    "fog-color": "#bde3fc",
+    "fog-ground-blend": 0.12,
+    "horizon-fog-blend": 0.02
+  }
+}

@@ -1,0 +1,44 @@
+## .NET
+bin/
+obj/
+*.user
+*.suo
+*.cache
+*.log
+*.db
+*.db-shm
+*.db-wal
+
+## IDE
+.vs/
+.vscode/
+.idea/
+*.swp
+*.swo
+
+## NuGet
+*.nupkg
+packages/
+
+## Node / Electron / Frontend
+node_modules/
+dist/
+out/
+desktop-electron/dist/
+desktop-electron/out/
+
+## Environment / Secrets
+appsettings.local.json
+*.local.json
+.env
+.env.local
+.env.*.local
+
+## OS
+Thumbs.db
+.DS_Store
+desktop.ini
+
+## Test results
+TestResults/
+coverage/

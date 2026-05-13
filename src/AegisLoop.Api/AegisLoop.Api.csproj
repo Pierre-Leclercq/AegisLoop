@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <RootNamespace>AegisLoop.Api</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AegisLoop.Application\AegisLoop.Application.csproj" />
+    <ProjectReference Include="..\AegisLoop.Connectors\AegisLoop.Connectors.csproj" />
+    <ProjectReference Include="..\AegisLoop.Infrastructure\AegisLoop.Infrastructure.csproj" />
+  </ItemGroup>
+
+</Project>

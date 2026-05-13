@@ -1,0 +1,42 @@
+{
+  "version": 8,
+  "name": "OpenStreetMap Standard",
+  "sources": {
+    "osm-raster": {
+      "type": "raster",
+      "tiles": ["https://tile.openstreetmap.org/{z}/{x}/{y}.png"],
+      "tileSize": 256,
+      "attribution": "&copy; <a href=\"https://www.openstreetmap.org/copyright\">OpenStreetMap</a> contributors",
+      "maxzoom": 19
+    },
+    "osm-terrain-free": {
+      "type": "raster-dem",
+      "tiles": ["https://s3.amazonaws.com/elevation-tiles-prod/terrarium/{z}/{x}/{y}.png"],
+      "tileSize": 256,
+      "attribution": "Terrain: <a href=\"https://github.com/tilezen/joerd/blob/master/docs/terrarium.md\">AWS Terrain Tiles</a>",
+      "maxzoom": 15
+    }
+  },
+  "sprite": "https://demotiles.maplibre.org/styles/osm-bright/sprite",
+  "glyphs": "https://demotiles.maplibre.org/font/{fontstack}/{range}.pbf",
+  "layers": [
+    {
+      "id": "osm-raster-layer",
+      "type": "raster",
+      "source": "osm-raster",
+      "minzoom": 0,
+      "maxzoom": 22
+    }
+  ],
+  "terrain": {
+    "source": "osm-terrain-free",
+    "exaggeration": 1.5
+  },
+  "sky": {
+    "sky-color": "#bde3fc",
+    "horizon-color": "#d8eefc",
+    "fog-color": "#bde3fc",
+    "fog-ground-blend": 0.1,
+    "horizon-fog-blend": 0.02
+  }
+}
