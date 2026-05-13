@@ -115,7 +115,8 @@ public sealed class ScoringAndEventCaseTests
             Observation("European wheat market prices", "Market prices rise after harvest data", sourceA.Id, DateTime.UtcNow.AddHours(1), 0.5));
         await dbContext.SaveChangesAsync();
 
-        var service = new EfEventCaseService(dbContext, new EfScoringService(dbContext));
+        var store = new EfAegisLoopStore(dbContext);
+        var service = new EfEventCaseService(dbContext, new EfScoringService(dbContext), store);
         var result = await service.RebuildAsync();
 
         Assert.Equal(3, result.ObservationsProcessed);

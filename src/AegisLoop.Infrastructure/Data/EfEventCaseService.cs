@@ -12,11 +12,13 @@ public sealed class EfEventCaseService : IEventCaseService
 {
     private readonly AegisLoopDbContext _dbContext;
     private readonly IScoringService _scoringService;
+    private readonly IAegisLoopStore _store;
 
-    public EfEventCaseService(AegisLoopDbContext dbContext, IScoringService scoringService)
+    public EfEventCaseService(AegisLoopDbContext dbContext, IScoringService scoringService, IAegisLoopStore store)
     {
         _dbContext = dbContext;
         _scoringService = scoringService;
+        _store = store;
     }
 
     public async Task<EventRebuildResultDto> RebuildAsync(CancellationToken cancellationToken = default)
@@ -84,13 +86,13 @@ public sealed class EfEventCaseService : IEventCaseService
         {
             Category = AuditCategory.Correlation,
             Action = "EventCasesRebuilt",
-            Actor = "system",
+            Actor = Constants.SystemActor,
             TargetType = nameof(EventCase),
             Details = JsonSerializer.Serialize(new { observationsProcessed = observations.Count, eventCasesCreated = clusters.Count, linksCreated })
         });
         await _dbContext.SaveChangesAsync(cancellationToken);
 
-        var events = await new EfAegisLoopStore(_dbContext).ListEventCasesAsync(500, cancellationToken);
+        var events = await _store.ListEventCasesAsync(500, cancellationToken);
         return new EventRebuildResultDto(observations.Count, clusters.Count, linksCreated, events);
     }
 

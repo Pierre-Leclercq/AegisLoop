@@ -101,7 +101,7 @@ public sealed class EfScoringService : IScoringService
         {
             Category = AuditCategory.Scoring,
             Action = action,
-            Actor = "system",
+            Actor = Constants.SystemActor,
             TargetType = score.TargetType.ToString(),
             TargetId = score.TargetId,
             Details = JsonSerializer.Serialize(new
