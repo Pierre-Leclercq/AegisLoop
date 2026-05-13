@@ -9,6 +9,7 @@ It helps analysts ingest RSS/GDELT-like feeds, normalize raw items into observat
 ![.NET](https://img.shields.io/badge/.NET-10.0-blue)
 ![Frontend](https://img.shields.io/badge/Electron%20%2B%20React-TypeScript-blue)
 ![License](https://img.shields.io/badge/license-AGPL--3.0-blue)
+[![build](https://github.com/Pierre-Leclercq/AegisLoop/actions/workflows/ci.yml/badge.svg)](https://github.com/Pierre-Leclercq/AegisLoop/actions/workflows/ci.yml)
 
 ---
 
@@ -56,7 +57,7 @@ The project is functional as a reproducible demonstration and local OSINT analys
 ### Clone, build, test
 
 ```bash
-git clone https://github.com/<your-org>/AegisLoop.git
+git clone https://github.com/Pierre-Leclercq/AegisLoop.git
 cd AegisLoop
 
 # Backend
@@ -150,13 +151,20 @@ Files are saved as `aegisloop-eventcase-<eventCaseId>.json` and `aegisloop-event
 
 ## Screenshots
 
-| View | Screenshot |
-|---|---|
-| Dashboard | `docs/assets/dashboard.png` |
-| Carte + Timeline | `docs/assets/map-timeline.png` |
-| EventCase | `docs/assets/eventcase.png` |
-| Observations | `docs/assets/observations.png` |
-| Paramètres | `docs/assets/parametres.png` |
+### Dashboard
+![AegisLoop dashboard](docs/assets/dashboard.png)
+
+### Map + Timeline
+![AegisLoop map and timeline](docs/assets/map-timeline.png)
+
+### EventCase
+![AegisLoop event case](docs/assets/eventcase.png)
+
+### Observations
+![AegisLoop observations](docs/assets/observations.png)
+
+### Settings
+![AegisLoop settings](docs/assets/parametres.png)
 
 ---
 
@@ -210,19 +218,32 @@ graph TD
 
 ## API / useful endpoints
 
-The REST API listens on `http://localhost:5100` and exposes ~20 endpoints. Key ones:
+The REST API listens on `http://localhost:5100`.
 
 | Endpoint | Description |
 |---|---|
 | `GET /health` | Health check |
+| `GET /api/dashboard` | Dashboard KPIs, high-score events, category/source breakdown, last ingestion |
 | `GET /api/observations` | List observations (with filters) |
-| `GET /api/observations/{id}` | Observation detail + provenance |
-| `GET /api/eventcases` | List event cases |
-| `GET /api/eventcases/{id}` | EventCase detail + related observations |
-| `POST /api/eventcases/{id}/export?format=json` | Export EventCase as JSON |
-| `POST /api/eventcases/{id}/export?format=markdown` | Export EventCase as Markdown |
+| `GET /api/observations/{id}` | Observation detail |
+| `GET /api/observations/{id}/provenance` | Observation provenance chain |
+| `GET /api/events` | List event cases |
+| `GET /api/events/{id}` | EventCase detail |
+| `GET /api/events/{id}/provenance` | EventCase provenance + related observations |
+| `GET /api/map-timeline` | Map + timeline payload with optional filters (`?source=&minScore=&scenario=`) |
+| `POST /api/feedback` | Submit analyst feedback (Confirm, Invalidate, Correct, Note) |
+| `GET /api/export/{eventCaseId}?format=json` | Export EventCase as JSON |
+| `GET /api/export/{eventCaseId}?format=markdown` | Export EventCase as Markdown |
+| `GET /api/connectors` | List source connectors |
+| `POST /api/ingestion/run` | Trigger ingestion |
+| `GET /api/ingestion/jobs` | List ingestion jobs |
+| `GET /api/audit` | List audit entries |
+| `GET /api/scoring/{id}/breakdown` | Confidence score breakdown for a target |
+| `GET /api/demo/status` | Demo dataset status |
+| `POST /api/demo/load` | Load seed dataset |
 | `POST /api/demo/reset` | Reset demo state |
-| `POST /api/demo/seed` | Load seed dataset |
+| `POST /api/demo/rebuild` | Rebuild event cases from observations |
+| `POST /api/demo/recalculate` | Recalculate all confidence scores |
 
 ---
 

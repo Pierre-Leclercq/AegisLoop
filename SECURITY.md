@@ -6,11 +6,11 @@ Only the latest `main` branch commit of this prototype is provided. No formal re
 
 ## Reporting a Vulnerability
 
-If you discover a security concern:
+Please do not disclose security issues publicly.
 
-1. **Do not open a public issue.**
-2. Email the maintainer (see repository profile) with relevant details.
-3. Allow reasonable time for acknowledgement.
+Use GitHub Private Vulnerability Reporting if enabled, or contact the maintainer through the GitHub profile.
+
+Do not include real OSINT data, credentials, personal data or sensitive operational material in any report.
 
 ## Scope
 
